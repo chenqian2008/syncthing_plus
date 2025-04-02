@@ -1090,7 +1090,7 @@ func (m *model) LocalChangedFolderFiles(folder string, page, perpage int) ([]pro
 	if err != nil {
 		return nil, err
 	}
-	if ros.TotalItems() == 0 {
+	if ros.TotalItems(m.folderCfgs[folder].IgnoreDelete) == 0 {
 		return nil, nil
 	}
 

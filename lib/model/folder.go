@@ -372,7 +372,7 @@ func (f *folder) pull() (success bool, err error) {
 	if err != nil {
 		return false, err
 	}
-	if needCount.TotalItems() == 0 {
+	if needCount.TotalItems(f.IgnoreDelete) == 0 {
 		// Clears pull failures on items that were needed before, but aren't anymore.
 		f.errorsMut.Lock()
 		f.pullErrors = nil

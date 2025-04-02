@@ -349,6 +349,9 @@ loop:
 				// about a deleted file that we can't have anyway.
 				// Reason we need it in the first place is, that it was
 				// ignored at some point.
+				if f.IgnoreDelete {
+					continue
+				}
 				dbUpdateChan <- dbUpdateJob{file, dbUpdateDeleteFile}
 			} else {
 				// We can't pull an invalid file. Grab the error again since
@@ -362,6 +365,9 @@ loop:
 			if file.IsDirectory() {
 				// Perform directory deletions at the end, as we may have
 				// files to delete inside them before we get to that point.
+				if f.IgnoreDelete {
+					continue
+				}
 				dirDeletions = append(dirDeletions, file)
 			} else if file.IsSymlink() {
 				f.deleteFile(file, dbUpdateChan, scanChan)

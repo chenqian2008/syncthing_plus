@@ -37,8 +37,12 @@ func (c Counts) Add(other Counts) Counts {
 	}
 }
 
-func (c Counts) TotalItems() int {
-	return c.Files + c.Directories + c.Symlinks + c.Deleted
+func (c Counts) TotalItems(ignoreDelete bool) int {
+	var deleteNum int = c.Deleted
+	if ignoreDelete {
+		deleteNum = 0
+	}
+	return c.Files + c.Directories + c.Symlinks + deleteNum
 }
 
 func (c Counts) String() string {

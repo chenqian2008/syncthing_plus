@@ -146,11 +146,11 @@ func (c *folderSummaryService) Summary(folder string) (*FolderSummary, error) {
 
 	res.Invalid = "" // Deprecated, retains external API for now
 
-	res.GlobalFiles, res.GlobalDirectories, res.GlobalSymlinks, res.GlobalDeleted, res.GlobalBytes, res.GlobalTotalItems = global.Files, global.Directories, global.Symlinks, global.Deleted, global.Bytes, global.TotalItems()
-
-	res.LocalFiles, res.LocalDirectories, res.LocalSymlinks, res.LocalDeleted, res.LocalBytes, res.LocalTotalItems = local.Files, local.Directories, local.Symlinks, local.Deleted, local.Bytes, local.TotalItems()
-
 	fcfg, haveFcfg := c.cfg.Folder(folder)
+
+	res.GlobalFiles, res.GlobalDirectories, res.GlobalSymlinks, res.GlobalDeleted, res.GlobalBytes, res.GlobalTotalItems = global.Files, global.Directories, global.Symlinks, global.Deleted, global.Bytes, global.TotalItems(fcfg.IgnoreDelete)
+
+	res.LocalFiles, res.LocalDirectories, res.LocalSymlinks, res.LocalDeleted, res.LocalBytes, res.LocalTotalItems = local.Files, local.Directories, local.Symlinks, local.Deleted, local.Bytes, local.TotalItems(fcfg.IgnoreDelete)
 
 	if haveFcfg && fcfg.IgnoreDelete {
 		need.Deleted = 0
@@ -162,7 +162,7 @@ func (c *folderSummaryService) Summary(folder string) (*FolderSummary, error) {
 	if need.Bytes < 0 {
 		need.Bytes = 0
 	}
-	res.NeedFiles, res.NeedDirectories, res.NeedSymlinks, res.NeedDeletes, res.NeedBytes, res.NeedTotalItems = need.Files, need.Directories, need.Symlinks, need.Deleted, need.Bytes, need.TotalItems()
+	res.NeedFiles, res.NeedDirectories, res.NeedSymlinks, res.NeedDeletes, res.NeedBytes, res.NeedTotalItems = need.Files, need.Directories, need.Symlinks, need.Deleted, need.Bytes, need.TotalItems(fcfg.IgnoreDelete)
 
 	if haveFcfg && (fcfg.Type == config.FolderTypeReceiveOnly || fcfg.Type == config.FolderTypeReceiveEncrypted) {
 		// Add statistics for things that have changed locally in a receive
@@ -172,7 +172,7 @@ func (c *folderSummaryService) Summary(folder string) (*FolderSummary, error) {
 		res.ReceiveOnlyChangedSymlinks = ro.Symlinks
 		res.ReceiveOnlyChangedDeletes = ro.Deleted
 		res.ReceiveOnlyChangedBytes = ro.Bytes
-		res.ReceiveOnlyTotalItems = ro.TotalItems()
+		res.ReceiveOnlyTotalItems = ro.TotalItems(fcfg.IgnoreDelete)
 	}
 
 	res.InSyncFiles, res.InSyncBytes = global.Files-need.Files, global.Bytes-need.Bytes

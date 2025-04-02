@@ -63,6 +63,11 @@ func (f *sendOnlyFolder) pull() (bool, error) {
 			return false, err
 		}
 		if !ok {
+			// floder is IgnoreDelete, not need accounting
+			if f.IgnoreDelete {
+				continue
+			}
+
 			if file.IsInvalid() || file.IsDeleted() {
 				// Accept the file for accounting purposes
 				batch.Append(file)
