@@ -32,7 +32,7 @@ require (
 	github.com/quic-go/quic-go v0.50.0
 	github.com/rabbitmq/amqp091-go v1.10.0
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475
-	github.com/shirou/gopsutil/v4 v4.25.2
+	github.com/shirou/gopsutil/v4 v4.25.7
 	github.com/syncthing/notify v0.0.0-20250207082249-f0fa8f99c2bc
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d
 	github.com/thejerf/suture/v4 v4.0.6
@@ -42,7 +42,7 @@ require (
 	go.uber.org/automaxprocs v1.6.0
 	golang.org/x/crypto v0.36.0
 	golang.org/x/net v0.37.0
-	golang.org/x/sys v0.31.0
+	golang.org/x/sys v0.34.0
 	golang.org/x/text v0.23.0
 	golang.org/x/time v0.11.0
 	golang.org/x/tools v0.31.0
@@ -60,7 +60,7 @@ require (
 	github.com/cpuguy83/go-md2man/v2 v2.0.5 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
-	github.com/ebitengine/purego v0.8.2 // indirect
+	github.com/ebitengine/purego v0.8.4 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/go-asn1-ber/asn1-ber v1.5.7 // indirect
 	github.com/go-ole/go-ole v1.3.0 // indirect
@@ -91,8 +91,8 @@ require (
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/stretchr/testify v1.10.0 // indirect
-	github.com/tklauser/go-sysconf v0.3.14 // indirect
-	github.com/tklauser/numcpus v0.9.0 // indirect
+	github.com/tklauser/go-sysconf v0.3.15 // indirect
+	github.com/tklauser/numcpus v0.10.0 // indirect
 	github.com/yusufpapurcu/wmi v1.2.4 // indirect
 	go.uber.org/mock v0.5.0 // indirect
 	golang.org/x/exp v0.0.0-20241009180824-f66d83c29e7c // indirect
